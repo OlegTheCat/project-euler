@@ -1,0 +1,37 @@
+(in-package :asdf)
+ 
+(defsystem "project-euler"
+	:description "Project's Euler problems solutions in LISP"
+	:version "0.0.1"
+	:author "OlegTheCat"
+	:licence "Public Domain"
+	:components ((:file "utils")
+				 (:file "problem1" :depends-on ("utils"))
+				 (:file "problem2" :depends-on ("utils"))
+				 (:file "problem3" :depends-on ("utils"))
+				 (:file "problem4" :depends-on ("utils"))
+				 (:file "problem5" :depends-on ("utils"))
+				 (:file "problem6" :depends-on ("utils"))
+				 (:file "problem7" :depends-on ("utils"))
+				 (:file "problem8" :depends-on ("utils"))
+				 (:file "problem9" :depends-on ("utils"))
+				 (:file "problem10" :depends-on ("utils"))
+				 (:file "problem12" :depends-on ("utils"))
+				 (:file "problem13" :depends-on ("utils"))
+				 (:file "problem14" :depends-on ("utils"))
+				 (:file "problem15" :depends-on ("utils"))
+				 (:file "problem16" :depends-on ("utils"))
+				 (:file "problem17" :depends-on ("utils"))
+				 (:file "problem18" :depends-on ("utils"))
+				 (:file "problem19" :depends-on ("utils"))
+				 (:file "problem20" :depends-on ("utils"))
+				 (:file "problem21" :depends-on ("utils"))
+				 (:file "problem22" :depends-on ("utils"))
+				 (:file "problem23" :depends-on ("utils"))
+				 (:file "problem24" :depends-on ("utils"))
+				 (:file "problem25" :depends-on ("utils"))
+				 (:file "problem26" :depends-on ("utils"))
+				 (:file "problem27" :depends-on ("utils"))
+				 (:file "problem28" :depends-on ("utils"))
+				 (:file "problem67" :depends-on ("utils")))
+	:depends-on ("cl-utilities"))

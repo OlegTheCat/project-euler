@@ -1,0 +1,11 @@
+(defun duplicate-elems (lst times)
+  (mapcan #'(lambda (el) 
+			  (loop for i from 1 to times collect el))
+		  lst))
+
+(defun problem28 ()
+  (let* ((size 1001)
+		 (steps (make-num-lst 2 size 2))
+		 (all-steps (cons 1 (duplicate-elems steps 4)))
+		 (diagonal-els (cumsum all-steps)))
+	(reduce #'+ diagonal-els)))

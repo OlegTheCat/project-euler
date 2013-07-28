@@ -197,10 +197,10 @@
 	((symbolp x) (explode-symb x))
 	(t (error "Unhandled type"))))
 
-(defun stick-num (lst)
-  (if (cdr lst)
-      (+ (* (car lst) (expt 10 (1- (length lst)))) (stick-num (cdr lst)))
-      (car lst)))
+(defun stick-num (lst &key (error nil))
+  (multiple-value-bind (i n) (parse-integer (apply #'mkstr lst) :junk-allowed (not error))
+    (declare (ignore n))
+    i))
 
 (defun cdr-assoc (key alist)
   (cdr (assoc key alist)))

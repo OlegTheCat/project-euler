@@ -197,6 +197,11 @@
 	((symbolp x) (explode-symb x))
 	(t (error "Unhandled type"))))
 
+(defun bits (num)
+  (if (< num 2)
+    (list num)
+    (append1 (bits (truncate num 2)) (mod num 2))))
+
 (defun stick-num (lst &key (error nil))
   (multiple-value-bind (i n) (parse-integer (apply #'mkstr lst) :junk-allowed (not error))
     (declare (ignore n))
@@ -289,3 +294,11 @@
 		(t (loop for elems on set
 				 nconc (mapcar #'(lambda (set) (cons (car elems) set))
 							   (k-sublists (cdr elems) (- k 1)))))))
+
+(defun permutations (l)
+  (if (null l)
+	(list nil)	
+	(mapcan #'(lambda (x)
+				(mapcar #'(lambda (y)
+							(cons x y))
+						(permutations (remove x l :count 1)))) l)))

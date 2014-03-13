@@ -55,4 +55,4 @@
 			(list (cdr-assoc (car num-lst) repr))))
 
 (defun problem17 ()
-  (length (apply #'concatenate 'string (loop for i from 1 to 1000 append (num-to-word (explode-num i))))))
+  (length (apply #'concatenate 'string (loop for i from 1 to 1000 append (num-to-word (explode i))))))

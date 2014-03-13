@@ -41,5 +41,6 @@
 				 (:file "problem34" :depends-on ("utils"))
 				 (:file "problem35" :depends-on ("utils"))
 				 (:file "problem36" :depends-on ("utils"))
+				 (:file "problem37" :depends-on ("utils"))
 				 (:file "problem67" :depends-on ("utils")))
 	:depends-on ("cl-utilities"))

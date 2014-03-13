@@ -12,5 +12,5 @@
   (let ((i 0))
 	(mapcar #'(lambda (x)
 				(incf i)
-				(* i (reduce #'+ (mapcar #'alphabet-pos-of (explode-str x)))))
+				(* i (reduce #'+ (mapcar #'alphabet-pos-of (explode x)))))
 			(sort names #'string<))))

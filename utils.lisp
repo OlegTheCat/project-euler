@@ -170,32 +170,31 @@
        (nreverse acc)))
 
 (defun group (source n)
-  (if (zerop n) (error "zero length"))
+  (when (zerop n) (error "zero length"))
   (labels ((rec (source acc)
                 (let ((rest (nthcdr n source)))
-                     (if (consp rest)
-                         (rec rest (cons (subseq source 0 n) acc))
-                         (nreverse (cons source acc))))))
-          (if source (rec source nil) nil)))
+                  (if (consp rest)
+                    (rec rest (cons (subseq source 0 n) acc))
+                    (nreverse (cons source acc))))))
+    (if source (rec source nil) nil)))
 
-(defun explode-symb (sym)
+(defgeneric explode (x))
+
+(defmethod explode ((x string))
+  (coerce x 'list))
+
+(defmethod explode ((x number))
+  (and (>= x 1)
+      (append1 (explode (floor (/ x 10))) (mod x 10))))
+
+(defmethod explode ((x symbol))
   (map 'list #'(lambda (c)
                        (intern (make-string 1 :initial-element c)))
-       (symbol-name sym)))
+       (symbol-name x)))
 
-(defun explode-num (n)
-  (and (>= n 1)
-      (append1 (explode-num (floor (/ n 10))) (mod n 10))))
-
-(defun explode-str (str)
-  (coerce str 'list))
-
-(defun explode (x)
-  (cond
-	((numberp x) (explode-num x))
-	((stringp x) (explode-str x))
-	((symbolp x) (explode-symb x))
-	(t (error "Unhandled type"))))
+(defun mapbutlast (fun lst)
+  (loop for i from 0 below (length lst) collect
+        (funcall fun (butlast lst i))))
 
 (defun bits (num)
   (if (< num 2)
@@ -233,7 +232,7 @@
           (find-divisor n (funcall inc start-from) inc cond-fun))))
 
 (defun prime-p (n)
-  (and (> n 0) (not (find-divisor n))))
+  (and (> n 1) (not (find-divisor n))))
 
 (defun nth-prime(n &optional (start-from 2))
   (if (< n 1)

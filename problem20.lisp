@@ -1,2 +1,2 @@
 (defun problem20 ()
-  (reduce #'+ (explode-num (factorial 100))))
+  (reduce #'+ (explode (factorial 100))))
